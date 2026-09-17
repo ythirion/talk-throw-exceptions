@@ -1,0 +1,14 @@
+Workshop/csharp/EmployeeOnboarding/Models/Models.cs
+  h_0a88d9aba8622a 46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "48f7a0d9b614946f05808affa145ab4100986813",
+  "prompts": {},
+  "humans": {
+    "h_0a88d9aba8622a": {
+      "author": "Yoan Thirion <yoan.thirion@gmail.com>"
+    }
+  }
+}
