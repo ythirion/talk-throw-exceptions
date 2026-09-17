@@ -1,0 +1,25 @@
+Workshop/csharp/EmployeeOnboarding/Externals/Ports.cs
+  h_0a88d9aba8622a 1,23
+Workshop/csharp/EmployeeOnboarding.Tests/EmployeeOnboarding.Tests.csproj
+  h_0a88d9aba8622a 12
+Workshop/csharp/EmployeeOnboarding/EmployeeOnboarding.csproj
+  h_0a88d9aba8622a 11
+Workshop/csharp/EmployeeOnboarding/Models/Models.cs
+  h_0a88d9aba8622a 38-39
+Workshop/csharp/EmployeeOnboarding.Tests/OnboardingTests.cs
+  h_0a88d9aba8622a 50,89,94-96,99-101
+  h_0a88d9aba8622a 49
+Workshop/csharp/EmployeeOnboarding/Onboarding.cs
+  h_0a88d9aba8622a 1,9,16-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "2cec361adb55e85a9381a4f69d6833a489ceec5a",
+  "prompts": {},
+  "humans": {
+    "h_0a88d9aba8622a": {
+      "author": "Yoan Thirion <yoan.thirion@gmail.com>"
+    }
+  }
+}
