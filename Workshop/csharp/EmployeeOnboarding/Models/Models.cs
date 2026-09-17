@@ -44,5 +44,3 @@ public class EmployeeRegistrationException(string message) : Exception(message);
 public class ContractGenerationException(string message) : Exception(message);
 
 public class AccountProvisioningException(string message) : Exception(message);
-
-public class PayrollEnrollmentException(string message) : Exception(message);

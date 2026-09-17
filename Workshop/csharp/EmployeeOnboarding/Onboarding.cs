@@ -28,9 +28,5 @@ public class Onboarding(IEmployeeRepository employees, IHrSystem hr, IItProvisio
         {
             throw new BusinessException(e.Message);
         }
-        catch (PayrollEnrollmentException e)
-        {
-            throw new BusinessException(e.Message);
-        }
     }
 }

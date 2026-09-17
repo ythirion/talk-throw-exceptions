@@ -95,7 +95,6 @@ public class OnboardingTests
         var enrollmentError = new Error("Payroll system unavailable");
         _payroll.Enroll(ProvisionedAccount).Returns(enrollmentError);
 
-
         _onboarding.OnboardNewHire(Offer)
             .Should()
             .FailWith(enrollmentError);
