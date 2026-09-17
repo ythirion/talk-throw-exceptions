@@ -36,9 +36,3 @@ public class OnboardingResult
 }
 
 public record Error(string Reason);
-
-public class BusinessException(string message) : Exception(message);
-
-public class EmployeeRegistrationException(string message) : Exception(message);
-
-public class ContractGenerationException(string message) : Exception(message);

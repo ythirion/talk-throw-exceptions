@@ -5,12 +5,12 @@ namespace EmployeeOnboarding.Externals;
 
 public interface IEmployeeRepository
 {
-    Employee Register(AcceptedOffer offer);
+   Result<Employee, Error> Register(AcceptedOffer offer);
 }
 
 public interface IHrSystem
 {
-    Contract GenerateContract(Employee employee);
+    Result<Contract, Error> GenerateContract(Employee employee);
 }
 
 public interface IItProvisioning

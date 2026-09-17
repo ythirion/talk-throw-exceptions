@@ -53,24 +53,28 @@ public class OnboardingTests
     // ── Failure paths ─────────────────────────────────────────────────────────
 
     [Fact]
-    public void Should_throw_business_exception_when_employee_registration_fails()
+    public void Should_return_a_duplicated_employee_error_when_employee_registration_fails()
     {
-        _employees.Register(Offer).Throws(new EmployeeRegistrationException("Duplicate employee record"));
+        var duplicateEmployeeError = new Error("Duplicate employee record");
+        _employees.Register(Offer)
+            .Returns(duplicateEmployeeError);
 
-        var act = () => _onboarding.OnboardNewHire(Offer);
-
-        act.Should().Throw<BusinessException>().WithMessage("Duplicate employee record");
+         _onboarding.OnboardNewHire(Offer)
+             .Should()
+             .FailWith(duplicateEmployeeError);
     }
 
     [Fact]
-    public void Should_throw_business_exception_when_contract_generation_fails()
+    public void Should_return_a_contract_error_when_contract_generation_fails()
     {
         _employees.Register(Offer).Returns(RegisteredEmployee);
-        _hr.GenerateContract(RegisteredEmployee).Throws(new ContractGenerationException("Missing salary band"));
+        var contractGenerationError = new Error("Missing salary band");
+        _hr.GenerateContract(RegisteredEmployee)
+            .Returns(contractGenerationError);
 
-        var act = () => _onboarding.OnboardNewHire(Offer);
-
-        act.Should().Throw<BusinessException>().WithMessage("Missing salary band");
+         _onboarding.OnboardNewHire(Offer)
+             .Should()
+             .FailWith(contractGenerationError);
     }
 
     [Fact]
