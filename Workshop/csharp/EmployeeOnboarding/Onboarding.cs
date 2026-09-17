@@ -8,7 +8,11 @@ public class Onboarding(IEmployeeRepository employees, IHrSystem hr, IItProvisio
 {
     public Result<OnboardingResult, Error> OnboardNewHire(AcceptedOffer offer) 
         => employees.Register(offer)
-            .Bind(hr.GenerateContract)
-            .Bind(it.ProvisionAccount)
-            .Bind(payroll.Enroll);
+            .Bind(GenerateContract())
+            .Bind(ProvisionAccount())
+            .Bind(Enroll());
+
+    private Func<Employee, Result<Contract, Error>> GenerateContract() => hr.GenerateContract;
+    private Func<Contract, Result<Account, Error>> ProvisionAccount() => it.ProvisionAccount;
+    private Func<Account, Result<OnboardingResult, Error>> Enroll() => payroll.Enroll;
 }
