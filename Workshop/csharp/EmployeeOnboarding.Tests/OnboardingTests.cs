@@ -74,15 +74,18 @@ public class OnboardingTests
     }
 
     [Fact]
-    public void Should_throw_business_exception_when_account_provisioning_fails()
+    public void Should_return_an_account_error_when_account_provisioning_fails()
     {
         _employees.Register(Offer).Returns(RegisteredEmployee);
         _hr.GenerateContract(RegisteredEmployee).Returns(GeneratedContract);
-        _it.ProvisionAccount(GeneratedContract).Throws(new AccountProvisioningException("Login already taken"));
+        
+        var accountProvisioningError = new Error("Login already taken");
+        _it.ProvisionAccount(GeneratedContract)
+            .Returns(accountProvisioningError);
 
-        var act = () => _onboarding.OnboardNewHire(Offer);
-
-        act.Should().Throw<BusinessException>().WithMessage("Login already taken");
+        _onboarding.OnboardNewHire(Offer)
+            .Should()
+            .FailWith(accountProvisioningError);
     }
 
     [Fact]

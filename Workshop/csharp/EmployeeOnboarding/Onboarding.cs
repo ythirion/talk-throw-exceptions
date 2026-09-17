@@ -12,19 +12,15 @@ public class Onboarding(IEmployeeRepository employees, IHrSystem hr, IItProvisio
         {
             var employee = employees.Register(offer);
             var contract = hr.GenerateContract(employee);
-            var account = it.ProvisionAccount(contract);
             
-            return payroll.Enroll(account);
+            return it.ProvisionAccount(contract)
+                .Bind(payroll.Enroll);
         }
         catch (EmployeeRegistrationException e)
         {
             throw new BusinessException(e.Message);
         }
         catch (ContractGenerationException e)
-        {
-            throw new BusinessException(e.Message);
-        }
-        catch (AccountProvisioningException e)
         {
             throw new BusinessException(e.Message);
         }

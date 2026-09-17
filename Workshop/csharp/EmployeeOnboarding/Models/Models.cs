@@ -42,5 +42,3 @@ public class BusinessException(string message) : Exception(message);
 public class EmployeeRegistrationException(string message) : Exception(message);
 
 public class ContractGenerationException(string message) : Exception(message);
-
-public class AccountProvisioningException(string message) : Exception(message);

@@ -15,7 +15,7 @@ public interface IHrSystem
 
 public interface IItProvisioning
 {
-    Account ProvisionAccount(Contract contract);
+    Result<Account, Error> ProvisionAccount(Contract contract);
 }
 
 public interface IPayroll
