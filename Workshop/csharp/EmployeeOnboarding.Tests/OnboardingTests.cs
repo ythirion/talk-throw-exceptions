@@ -46,7 +46,8 @@ public class OnboardingTests
 
         var result = _onboarding.OnboardNewHire(Offer);
 
-        result.Should().Be(EnrollmentResult);
+        result.Should()
+            .SucceedWith(EnrollmentResult);
     }
 
     // ── Failure paths ─────────────────────────────────────────────────────────
@@ -85,15 +86,18 @@ public class OnboardingTests
     }
 
     [Fact]
-    public void Should_throw_business_exception_when_payroll_enrollment_fails()
+    public void Should_return_a_payroll_enrollment_error()
     {
         _employees.Register(Offer).Returns(RegisteredEmployee);
         _hr.GenerateContract(RegisteredEmployee).Returns(GeneratedContract);
         _it.ProvisionAccount(GeneratedContract).Returns(ProvisionedAccount);
-        _payroll.Enroll(ProvisionedAccount).Throws(new PayrollEnrollmentException("Payroll system unavailable"));
+        
+        var enrollmentError = new Error("Payroll system unavailable");
+        _payroll.Enroll(ProvisionedAccount).Returns(enrollmentError);
 
-        var act = () => _onboarding.OnboardNewHire(Offer);
 
-        act.Should().Throw<BusinessException>().WithMessage("Payroll system unavailable");
+        _onboarding.OnboardNewHire(Offer)
+            .Should()
+            .FailWith(enrollmentError);
     }
 }

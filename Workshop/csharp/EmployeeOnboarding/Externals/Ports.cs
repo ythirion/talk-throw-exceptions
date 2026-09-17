@@ -1,3 +1,4 @@
+using CSharpFunctionalExtensions;
 using EmployeeOnboarding.Models;
 
 namespace EmployeeOnboarding.Externals;
@@ -19,5 +20,5 @@ public interface IItProvisioning
 
 public interface IPayroll
 {
-    OnboardingResult Enroll(Account account);
+    Result<OnboardingResult, Error> Enroll(Account account);
 }
